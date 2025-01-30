@@ -1,0 +1,1 @@
+start "" "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe" --user-data-dir="C://Chrome dev session" --disable-web-security "http://localhost:3000"
