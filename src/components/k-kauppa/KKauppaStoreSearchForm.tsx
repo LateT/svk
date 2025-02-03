@@ -37,7 +37,7 @@ const KKauppaStoreSearchForm = ({setKStores}: {setKStores: React.Dispatch<React.
 
     useEffect(() => {
 
-        if (search != "" && doSearch > 0) {
+        if (search !== "" && doSearch > 0) {
             fetchStores(search);
         }
     }, [doSearch])
