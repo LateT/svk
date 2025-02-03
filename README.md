@@ -1,5 +1,5 @@
 # S vs K stores
-Compare prices of S- and K- stores by first selecting which stores you want to compare and then searching the product by name.
+Compare prices of S- and K- stores by first selecting which stores you want to compare and searching the product by name.
 
 Build and run like any other react project with npm run build, npm start.
 
