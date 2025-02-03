@@ -3,7 +3,7 @@ import { Tuote } from '../types/Tuote';
 import { Button, ListGroup } from 'react-bootstrap';
 
 
-const ProductsList = ({ products, startIndex, setFrom }: { products: Tuote[], startIndex: number, setFrom: React.Dispatch<React.SetStateAction<number>> }) => {
+const ProductsList = ({ products, startIndex, setFrom }: { products: Tuote[], startIndex: number, setFrom: React.Dispatch<React.SetStateAction<number>> }): React.JSX.Element => {
     
     const ItemList: React.ReactElement[] = [];
 

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const StoreSearchForm = ({setStoreArr}) => {
+const StoreSearchForm = ({setStoreArr}): React.JSX.Element => {
     const [pc, setPc] = useState("");
     const [search,setSearch] = useState(0);
     const [errortxt, setErrortxt] = useState("");
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        const fetchStores = async (code: string) => {
+        const fetchStores = async (code: string): Promise<void> => {
             setLoading(true);
             const url = `https://api.s-kaupat.fi/?operationName=GetAddressAutosuggestions&variables=%7B%22query%22%3A%22${code}%22%2C%22countryCode%22%3A%22FIN%22%2C%22lang%22%3A%22fi%2Csv%22%2C%22limit%22%3A20%2C%22includeInternal%22%3Atrue%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%221f835b26865594c2c30d7d5389e1b32bab29505e254210963bbc2bd6abb3570d%22%7D%7D`;
             const f = await fetch(url, {

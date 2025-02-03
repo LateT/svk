@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { KKauppa } from '../../types/Kkauppa';
 
-const KKauppaStoreSearchForm = ({setKStores}: {setKStores: React.Dispatch<React.SetStateAction<KKauppa[]>>}) => {
+const KKauppaStoreSearchForm = ({setKStores}: {setKStores: React.Dispatch<React.SetStateAction<KKauppa[]>>}): React.JSX.Element => {
     const [search, setSearch] = useState<string>("");
     const [doSearch,setDoSearch] = useState<number>(0);
-    const fetchStores = async (query: string) => {
+    const fetchStores = async (query: string): Promise<void> => {
         const url = "https://api.mobile.k-ruoka.fi/graphql";
         const f = await fetch(url, {
             method: "POST",

@@ -4,7 +4,7 @@ import { Tuote } from '../types/Tuote';
 import { ProductsList } from './ProductsList.tsx';
 import { KTuote } from '../types/KTuote';
 
-const ProductsSearch = ({ id, kId}: { id: number, kId:string}) => {
+const ProductsSearch = ({ id, kId}: { id: number, kId:string}): React.JSX.Element => {
     const [query, setQuery] = useState<string>(""); // search term
     const [search, setSearch] = useState<number>(0); // increase by 1 to trigger useEffect to fetch
     const [from, setFrom] = useState<number>(0);
@@ -16,7 +16,7 @@ const ProductsSearch = ({ id, kId}: { id: number, kId:string}) => {
      * @param id store id
      * @param limit maximum amount of results
      */
-    const getProducts = async (from: number, search: string, id: number, limit: number) => {
+    const getProducts = async (from: number, search: string, id: number, limit: number): Promise<void> => {
         const formattedDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
         const url = `https://api.s-kaupat.fi/?operationName=GetFilteredProducts&variables=%7B%22queryString%22%3A%22${search}%22%2C%22id%22%3A%22${id}%22%2C%22from%22%3A${from}%2C%22limit%22%3A${limit}%2C%22slug%22%3A%22%22%2C%22hierarchyId%22%3A%22%22%2C%22includeAgeLimitedByAlcohol%22%3Atrue%2C%22structuredFacets%22%3A%5B%7B%22key%22%3A%22brandName%22%2C%22order%22%3A%22asc%22%7D%2C%7B%22key%22%3A%22labels%22%7D%5D%2C%22searchProvider%22%3A%22loop54%22%2C%22useRandomId%22%3Atrue%2C%22generatedSessionId%22%3Anull%2C%22sortForAvailabilityLabelDate%22%3A%22${formattedDate}%22%2C%22fallbackToGlobal%22%3Afalse%2C%22availabilityDate%22%3A%22${formattedDate}%22%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%22b9f82e99fdd98688eecd70760cad76d1a53381521a2aad06604a53663c4af505%22%7D%7D`;
         const f = await fetch(url, {
@@ -40,7 +40,12 @@ const ProductsSearch = ({ id, kId}: { id: number, kId:string}) => {
         setProducts(data);
     }
 
-    const kGetProduct = async (ean: string) => {
+    /**
+     * 
+     * @param ean The EAN code of a product
+     * @returns The first matching product or null
+     */
+    const kGetProduct = async (ean: string): Promise<KTuote | null> => {
         const url = "https://api.mobile.k-ruoka.fi/graphql";
         const f = await fetch(url, {
             method: "POST",
