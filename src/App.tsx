@@ -47,15 +47,45 @@ useEffect(() => {
 
     }
   }, [selected])
+
+const renderStoreSelection = (): React.JSX.Element | null => {
+  if (storeId === 0) {
+    return (
+      <>
+        <p>Valitse S-kauppa</p>
+        <StoreSearchForm setStoreArr={setStoreArr} />
+        {storeArr && storeArr.length > 1 && <StoreList stores={storeArr} setSelected={setSelected} />}
+      </>
+    );
+  }
+  return null;
+};
+
+const renderKStoreSelection = (): React.JSX.Element | null => {
+  if (storeId !== 0 && kId === "") {
+    return (
+      <>
+        <p>Valitse K-kauppa</p>
+        <KKauppaStoreSearchForm setKStores={setKStores} />
+        {kStores.length > 1 && <KKauppaStoreList kStores={kStores} setKId={setKId} />}
+      </>
+    );
+  }
+  return null;
+};
+
+const renderProductSearch = (): React.JSX.Element | null => {
+  if (storeId !== 0 && kId !== "") {
+    return <ProductsSearch id={storeId} kId={kId} />;
+  }
+  return null;
+};
+
   return (
     <>
-      {(storeId === 0) && <p>Valitse S-kauppa</p>}
-      {(storeId === 0) && <StoreSearchForm setStoreArr={setStoreArr} />}
-      {(storeArr && storeArr.length > 1 && storeId === 0) && <StoreList stores={storeArr} setSelected={setSelected} />}
-      {(storeId !== 0 && kId === "") && <p>Valitse K-kauppa</p>}
-      {(storeId !== 0 && kId === "") && <KKauppaStoreSearchForm setKStores={setKStores} />}
-      {(setKStores.length > 1 && kId === "") && <KKauppaStoreList kStores={kStores} setKId={setKId}/>}
-      {(storeId !== 0 && kId !== "") && <ProductsSearch id={storeId} kId={kId}/>}
+      {renderStoreSelection()}
+      {renderKStoreSelection()}
+      {renderProductSearch()}
     </>
   );
 }
