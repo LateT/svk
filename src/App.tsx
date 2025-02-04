@@ -67,7 +67,7 @@ const renderKStoreSelection = (): React.JSX.Element | null => {
       <>
         <p>Valitse K-kauppa</p>
         <KKauppaStoreSearchForm setKStores={setKStores} />
-        {kStores.length > 1 && <KKauppaStoreList kStores={kStores} setKId={setKId} />}
+        {kStores.length >= 1 && <KKauppaStoreList kStores={kStores} setKId={setKId} />}
       </>
     );
   }
