@@ -43,5 +43,5 @@ The script:
 
 - Search S- stores by postalcode
 - Search K- stores by name
-- Search products by name
+- Search products by name and compare prices
 
