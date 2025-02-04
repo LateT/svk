@@ -15,7 +15,7 @@ function App() {
   const [kStores,setKStores] = useState<KKauppa[]>([]);
 
 
-  const getStoreId = async (selected: Kauppa) => {
+  const getStoreId = async (selected: Kauppa): Promise<void> => {
     const url = `https://api.s-kaupat.fi/?operationName=GetPickupSlotsForCoordinates&variables=%7B%22startDate%22%3A%222025-01-21%22%2C%22endDate%22%3A%222025-01-21%22%2C%22closeToCoordinates%22%3A%7B%22latitude%22%3A${selected.latitude}%2C%22longitude%22%3A${selected.longitude}%7D%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%22cebc1489438e9336c0c773ec9a680a814ce369fb169653e1d2a4c0e7426f5dd1%22%7D%7D`;
     const f = await fetch(url, {
       method: "GET",
