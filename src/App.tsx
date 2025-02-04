@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ErrorBoundary from './components/ErrorBoundary.tsx';
 import { StoreSearchForm } from './components/StoreSearchForm.tsx';
 import { Kauppa } from './types/kauppa';
 import { StoreList } from './components/StoreList.tsx';
@@ -82,11 +83,11 @@ const renderProductSearch = (): React.JSX.Element | null => {
 };
 
   return (
-    <>
+    <ErrorBoundary>
       {renderStoreSelection()}
       {renderKStoreSelection()}
       {renderProductSearch()}
-    </>
+    </ErrorBoundary>
   );
 }
 
